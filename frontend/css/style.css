@@ -1,0 +1,109 @@
+:root {
+  --fundo: #eef0ee;
+  --papel: #ffffff;
+  --tinta: #1d2420;
+  --suave: #5f6b64;
+  --linha: #d4d9d5;
+  --destaque: #c8781e;
+  --verde: #2f7d4f;
+  --vermelho: #b23a2e;
+  --mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: var(--fundo);
+  color: var(--tinta);
+}
+
+.topo {
+  background: var(--tinta);
+  color: #f2f2ee;
+  padding: 18px 24px 0;
+  border-bottom: 4px solid var(--destaque);
+}
+.topo > div { display: flex; gap: 14px; align-items: center; }
+.topo h1 { font-size: 1.15rem; font-weight: 600; }
+.topo p { font-size: .82rem; color: #a9b3ad; font-family: var(--mono); }
+.selo {
+  width: 42px; height: 42px; border: 2px solid var(--destaque);
+  display: grid; place-items: center; font-family: var(--mono); color: var(--destaque);
+}
+
+nav { display: flex; gap: 4px; margin-top: 16px; overflow-x: auto; }
+.aba {
+  background: none; border: none; color: #c3cbc6; cursor: pointer;
+  padding: 10px 14px; font: inherit; font-size: .9rem; white-space: nowrap;
+}
+.aba:hover { color: #fff; }
+.aba.ativa { background: var(--fundo); color: var(--tinta); font-weight: 600; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+.secao { display: none; }
+.secao.ativa { display: block; }
+h2 { font-size: 1.3rem; margin-bottom: 18px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.card {
+  background: var(--papel); border: 1px solid var(--linha); padding: 18px;
+  border-left: 4px solid var(--destaque);
+}
+.card strong { display: block; font-family: var(--mono); font-size: 2rem; }
+.card span { color: var(--suave); font-size: .85rem; }
+
+.formulario {
+  display: flex; flex-wrap: wrap; gap: 8px; background: var(--papel);
+  border: 1px solid var(--linha); padding: 14px; margin-bottom: 16px; align-items: center;
+}
+.formulario label { font-size: .85rem; color: var(--suave); display: flex; gap: 6px; align-items: center; }
+input, select {
+  padding: 8px 10px; border: 1px solid var(--linha); font: inherit; font-size: .9rem;
+  background: #fafbfa; min-width: 0;
+}
+.largo { flex: 1 1 260px; }
+button[type="submit"] {
+  background: var(--tinta); color: #fff; border: none; padding: 9px 18px;
+  cursor: pointer; font: inherit; font-weight: 600;
+}
+button[type="submit"]:hover { background: var(--destaque); }
+.busca { width: 100%; margin-bottom: 10px; }
+
+table { width: 100%; border-collapse: collapse; background: var(--papel); font-size: .9rem; }
+th { text-align: left; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em;
+     color: var(--suave); padding: 10px; border-bottom: 2px solid var(--linha); }
+td { padding: 10px; border-bottom: 1px solid var(--linha); }
+td.mono { font-family: var(--mono); }
+
+.barra { height: 6px; background: var(--linha); width: 110px; display: inline-block; vertical-align: middle; }
+.barra i { display: block; height: 100%; background: var(--verde); }
+
+.tag { padding: 2px 8px; font-size: .78rem; font-weight: 600; }
+.tag.Ativo, .tag.Leve { background: #dcefe2; color: var(--verde); }
+.tag.Transferido, .tag.Média { background: #f6e6cf; color: #8a520f; }
+.tag.Liberado { background: #e3e6e4; color: var(--suave); }
+.tag.Grave { background: #f3d9d5; color: var(--vermelho); }
+
+.acoes select { padding: 4px; font-size: .8rem; }
+.btn-remover { background: none; border: none; color: var(--vermelho); cursor: pointer; font-size: 1rem; }
+
+.grade-celas { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.cela { background: var(--papel); border: 1px solid var(--linha); padding: 14px; }
+.cela h3 { font-family: var(--mono); font-size: 1.1rem; }
+.cela small { color: var(--suave); }
+.cela .vagas { display: flex; gap: 4px; margin-top: 10px; }
+.cela .vagas i { width: 18px; height: 18px; border: 1px solid var(--suave); }
+.cela .vagas i.ocupada { background: var(--tinta); border-color: var(--tinta); }
+.cela.lotada { border-top: 3px solid var(--vermelho); }
+
+.aviso {
+  position: fixed; bottom: 20px; right: 20px; background: var(--tinta); color: #fff;
+  padding: 12px 18px; opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+.aviso.visivel { opacity: 1; }
+.aviso.erro { background: var(--vermelho); }
+
+@media (max-width: 700px) {
+  table { display: block; overflow-x: auto; }
+}

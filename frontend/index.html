@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serra Azul · Gestão Penitenciária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <span class="selo">SA</span>
+      <div>
+        <h1>Penitenciária Estadual Serra Azul</h1>
+        <p>Sistema de Gestão Penitenciária</p>
+      </div>
+    </div>
+    <nav>
+      <button class="aba ativa" data-aba="painel">Painel</button>
+      <button class="aba" data-aba="detentos">Detentos</button>
+      <button class="aba" data-aba="celas">Celas</button>
+      <button class="aba" data-aba="agentes">Agentes</button>
+      <button class="aba" data-aba="visitas">Visitas</button>
+      <button class="aba" data-aba="ocorrencias">Ocorrências</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PAINEL -->
+    <section id="painel" class="secao ativa">
+      <h2>Painel geral</h2>
+      <div class="cards" id="cards-resumo"></div>
+    </section>
+
+    <!-- DETENTOS -->
+    <section id="detentos" class="secao">
+      <h2>Detentos</h2>
+      <form id="form-detento" class="formulario">
+        <input name="nome" placeholder="Nome completo" required>
+        <input name="prontuario" placeholder="Prontuário (ex: PR-0006)" required>
+        <label>Entrada <input type="date" name="data_entrada" required></label>
+        <input type="number" name="pena_meses" placeholder="Pena (meses)" min="1" required>
+        <select name="cela_id" id="select-cela"></select>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <input id="busca-detento" class="busca" placeholder="Buscar por nome ou prontuário...">
+      <table>
+        <thead>
+          <tr><th>Prontuário</th><th>Nome</th><th>Cela</th><th>Pena cumprida</th>
+              <th>Previsão de saída</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="tabela-detentos"></tbody>
+      </table>
+    </section>
+
+    <!-- CELAS -->
+    <section id="celas" class="secao">
+      <h2>Ocupação das celas</h2>
+      <div class="grade-celas" id="grade-celas"></div>
+    </section>
+
+    <!-- AGENTES -->
+    <section id="agentes" class="secao">
+      <h2>Agentes penitenciários</h2>
+      <form id="form-agente" class="formulario">
+        <input name="nome" placeholder="Nome" required>
+        <input name="matricula" placeholder="Matrícula (ex: AG-1004)" required>
+        <select name="turno"><option>Manhã</option><option>Tarde</option><option>Noite</option></select>
+        <select name="bloco_id">
+          <option value="">Sem bloco</option>
+          <option value="1">Bloco A</option><option value="2">Bloco B</option><option value="3">Bloco C</option>
+        </select>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <table>
+        <thead><tr><th>Matrícula</th><th>Nome</th><th>Turno</th><th>Bloco</th></tr></thead>
+        <tbody id="tabela-agentes"></tbody>
+      </table>
+    </section>
+
+    <!-- VISITAS -->
+    <section id="visitas" class="secao">
+      <h2>Registro de visitas</h2>
+      <form id="form-visita" class="formulario">
+        <select name="detento_id" class="select-detento" required></select>
+        <input name="visitante" placeholder="Nome do visitante" required>
+        <input name="parentesco" placeholder="Parentesco" required>
+        <input type="date" name="data_visita" required>
+        <button type="submit">Registrar</button>
+      </form>
+      <table>
+        <thead><tr><th>Data</th><th>Detento</th><th>Visitante</th><th>Parentesco</th></tr></thead>
+        <tbody id="tabela-visitas"></tbody>
+      </table>
+    </section>
+
+    <!-- OCORRÊNCIAS -->
+    <section id="ocorrencias" class="secao">
+      <h2>Ocorrências disciplinares</h2>
+      <form id="form-ocorrencia" class="formulario">
+        <select name="detento_id" class="select-detento" required></select>
+        <input type="date" name="data_ocorrencia" required>
+        <select name="gravidade"><option>Leve</option><option>Média</option><option>Grave</option></select>
+        <input name="descricao" placeholder="Descrição" required class="largo">
+        <button type="submit">Registrar</button>
+      </form>
+      <table>
+        <thead><tr><th>Data</th><th>Detento</th><th>Gravidade</th><th>Descrição</th><th>Agente</th></tr></thead>
+        <tbody id="tabela-ocorrencias"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <div id="aviso" class="aviso"></div>
+  <script src="js/script.js"></script>
+</body>
+</html>
